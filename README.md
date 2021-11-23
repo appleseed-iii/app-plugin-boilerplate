@@ -40,10 +40,9 @@
     ```
 
 5. now you'll have `app-ethereum/bin` files
-6. clone the boiler-plate repo
+6. clone the boiler-plate repo into your root directory
 
     ```bash
-    cd ..
     git clone --recurse-submodules git@github-appleseed:appleseed-iii/app-plugin-boilerplate.git
     ```
 
