@@ -4,8 +4,7 @@
 
 ## Steps used to create your local project
 
-1. create a new directory to hold this project
-    A. you will clone app-ethereum, ledger plugin-tools & app-plugin-boilerplate into this new directory
+1. create a new directory to hold this project. You will clone app-ethereum, ledger plugin-tools & app-plugin-boilerplate into this new directory
 
 2. clone app-ethereum
 
