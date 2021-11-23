@@ -47,15 +47,30 @@
     git clone --recurse-submodules git@github-appleseed:appleseed-iii/app-plugin-boilerplate.git
     ```
 
-7. after updating tests
+7. `yarn install` in `app-plugin-boilerplate/tests`
 
-    To build the plugin, you will need to go back to your docker setup. Fire up a new terminal window, go to your plugin_dev folder, and run ./start.sh.
+8. after updating tests, perform the following in your `docker container`
+
+    To build the plugin, you will need to go back to your docker setup. Fire up a new terminal window, go to your plugin_tools folder, and run ./start.sh.
 
     In your container, go to the plugin repo, and in the tests folder.
 
     ```bash
     cd app-plugin-boilerplate/tests
+    ./build_local_test_elfs.sh
     ```
+
+9. To run the tests
+
+    1. On Mac you must:
+        - FIRST TIME:
+            - Download and open xQuartz
+            - go to the security tab and ensure 'Allow connections from network clients' is checked
+            - quit (it will set $DISPLAY env variable)
+        - On Open:
+            - run xhost + in xQuartz
+            - then run speculos alias (step 2 below)
+    2. in `app-plugin-boilerplate/tests`, run `yarn test`
 
 ## Formatting
 
