@@ -4,19 +4,22 @@
 
 ## Steps used to create this Template (should not be repeated)
 
-1. app-ethereum
+1. create a new directory to hold this project
+    A. you will clone app-ethereum, ledger plugin-tools & app-plugin-boilerplate into this new directory
+
+2. clone app-ethereum
 
     ```bash
     git clone --recurse-submodules git@github-appleseed:LedgerHQ/app-ethereum.git
     ```
 
-2. ledger plugin-tools
+3. clone ledger plugin-tools
 
     ```bash
     git clone git@github-appleseed:LedgerHQ/plugin-tools.git
     ```
 
-3. make app-ethereum
+4. make app-ethereum
 
     ```bash
     cd plugin-tools
@@ -37,15 +40,13 @@
     exit
     ```
 
-4. now you'll have `app-ethereum/bin` files
-5. clone the boiler-plate repo
+5. now you'll have `app-ethereum/bin` files
+6. clone the boiler-plate repo
 
     ```bash
     cd ..
     git clone --recurse-submodules git@github-appleseed:appleseed-iii/app-plugin-boilerplate.git
     ```
-
-6. now this entire directory is ready to copy to new locations...
 
 7. after updating tests
 
@@ -53,9 +54,9 @@
 
     In your container, go to the plugin repo, and in the tests folder.
 
-        ```
-        cd app-plugin-boilerplate/tests
-        ```
+    ```bash
+    cd app-plugin-boilerplate/tests
+    ```
 
 ## Formatting
 
