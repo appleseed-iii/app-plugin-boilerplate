@@ -23,7 +23,7 @@ include $(BOLOS_SDK)/Makefile.defines
 
 # EDIT THIS: Put your plugin name
 # TODO(appleseed): Olympus vs Olympus DAO
-APPNAME = "Boilerplate"
+APPNAME = "Olympus"
 
 APP_LOAD_PARAMS += --appFlags 0x800 --path "44'/60'" --path "45'" --curve secp256k1
 
