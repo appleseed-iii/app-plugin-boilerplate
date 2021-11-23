@@ -1,0 +1,28 @@
+{
+    "chainId": 1,
+    "contracts": [
+        {
+            "address": "0xc8c436271f9a6f10a5b80c8b8ed7d0e8f37a612d",
+            "contractName": "StakingHelper",
+            "selectors": {
+                "0xa694fc3a": {
+                    "erc20OfInterest": [],
+                    "method": "stake",
+                    "plugin": "Olympus"
+		        }
+	        }
+	    },
+        {
+            "address": "0xfd31c7d00ca47653c6ce64af53c1571f9c36566a",
+            "contractName": "Staking",
+            "selectors": {
+                "0x9ebea88c": {
+                    "erc20OfInterest": [],
+                    "method": "unstake",
+                    "plugin": "Olympus"
+		        }
+	        }
+	    }
+    ],
+    "name": "Olympus"
+} 
