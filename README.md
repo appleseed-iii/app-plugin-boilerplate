@@ -2,7 +2,7 @@
 
 ## forked from app-plugin-boilerplate
 
-## Steps used to create this Template (should not be repeated)
+## Steps used to create your local project
 
 1. create a new directory to hold this project
     A. you will clone app-ethereum, ledger plugin-tools & app-plugin-boilerplate into this new directory
