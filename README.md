@@ -2,6 +2,8 @@
 
 ## forked from app-plugin-boilerplate
 
+[tutorial here](https://hackmd.io/300Ukv5gSbCbVcp3cZuwRQ#Environment-Setup)
+
 ## Steps used to create your local project
 
 1. create a new directory to hold this project. You will clone app-ethereum, ledger plugin-tools & app-plugin-boilerplate into this new directory
