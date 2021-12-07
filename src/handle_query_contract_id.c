@@ -11,9 +11,28 @@ void handle_query_contract_id(void *parameters) {
     strlcpy(msg->name, PLUGIN_NAME, msg->nameLength);
 
     // EDIT THIS: Adapt the cases by modifying the strings you pass to `strlcpy`.
+    // switch (context->selectorIndex) {
+    //     case SWAP_EXACT_ETH_FOR_TOKENS:
+    //         strlcpy(msg->version, "Swap", msg->versionLength);
+    //         break;
+    //     // Keep this
+    //     default:
+    //         PRINTF("Selector index: %d not supported\n", context->selectorIndex);
+    //         msg->result = ETH_PLUGIN_RESULT_ERROR;
+    //         return;
+    // }
     switch (context->selectorIndex) {
-        case SWAP_EXACT_ETH_FOR_TOKENS:
-            strlcpy(msg->version, "Swap", msg->versionLength);
+        case STAKE_OHM:
+            strlcpy(msg->version, "Stake", msg->versionLength);
+            break;
+        case UNSTAKE_SOHM:
+            strlcpy(msg->version, "Unstake", msg->versionLength);
+            break;
+        case BOND_PURCHASE:
+            strlcpy(msg->version, "Bond", msg->versionLength);
+            break;
+        case BOND_REDEEM:
+            strlcpy(msg->version, "Redeem", msg->versionLength);
             break;
         // Keep this
         default:
