@@ -74,7 +74,11 @@
 10. in the future to update submodules
 
 ```bash
-git submodule update --remote --merge
+git submodule update --remote --merge # this merges from YOUR remote
+
+# errors about reinit submodule
+git submodule deinit -f .
+git submodule update --init --recursive
 ```
 
 ## Formatting
