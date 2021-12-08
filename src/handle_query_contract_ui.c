@@ -28,15 +28,15 @@ void amountToPercent(const uint8_t *amount,
 static void set_amount_ui(ethQueryContractUI_t *msg, context_t *context, bool isDeposit) {
     strlcpy(msg->title, "Amount", msg->titleLength);
     if (isDeposit) {
-        amountToString(context->amount_to_deposit,
-                    sizeof(context->amount_to_deposit),
+        amountToString(context->amount,
+                    sizeof(context->amount),
                     context->decimals,
                     context->ticker,
                     msg->msg,
                     msg->msgLength);
     } else {
-        amountToString(context->amount_to_withdraw,
-                       sizeof(context->amount_to_withdraw),
+        amountToString(context->amount,
+                       sizeof(context->amount),
                        context->decimals,
                        context->ticker,
                        msg->msg,
@@ -62,8 +62,8 @@ static void set_send_ui(ethQueryContractUI_t *msg) {
 static void set_receive_ui(ethQueryContractUI_t *msg, context_t *context) {
     strlcpy(msg->title, "Receive Min.", msg->titleLength);
 
-    amountToString(context->amount_to_deposit,
-                   sizeof(context->amount_to_deposit),
+    amountToString(context->amount,
+                   sizeof(context->amount),
                    context->decimals,
                    context->ticker,
                    msg->msg,
@@ -72,25 +72,25 @@ static void set_receive_ui(ethQueryContractUI_t *msg, context_t *context) {
 
 // Set UI for "Beneficiary" screen.
 // EDIT THIS: Adapt / remove this function to your needs.
-static void set_beneficiary_ui(ethQueryContractUI_t *msg, context_t *context) {
-    strlcpy(msg->title, "Recipient", msg->titleLength);
+// static void set_beneficiary_ui(ethQueryContractUI_t *msg, context_t *context) {
+//     strlcpy(msg->title, "Recipient", msg->titleLength);
 
-    // Prefix the address with `0x`.
-    msg->msg[0] = '0';
-    msg->msg[1] = 'x';
+//     // Prefix the address with `0x`.
+//     msg->msg[0] = '0';
+//     msg->msg[1] = 'x';
 
-    // We need a random chainID for legacy reasons with `getEthAddressStringFromBinary`.
-    // Setting it to `0` will make it work with every chainID :)
-    uint64_t chainid = 0;
+//     // We need a random chainID for legacy reasons with `getEthAddressStringFromBinary`.
+//     // Setting it to `0` will make it work with every chainID :)
+//     uint64_t chainid = 0;
 
-    // Get the string representation of the address stored in `context->beneficiary`. Put it in
-    // `msg->msg`.
-    getEthAddressStringFromBinary(
-        context->beneficiary,
-        msg->msg + 2,  // +2 here because we've already prefixed with '0x'.
-        msg->pluginSharedRW->sha3,
-        chainid);
-}
+//     // Get the string representation of the address stored in `context->beneficiary`. Put it in
+//     // `msg->msg`.
+//     getEthAddressStringFromBinary(
+//         context->beneficiary,
+//         msg->msg + 2,  // +2 here because we've already prefixed with '0x'.
+//         msg->pluginSharedRW->sha3,
+//         chainid);
+// }
 
 static void set_slippage_ui(ethQueryContractUI_t *msg, context_t *context) {
     strlcpy(msg->title, "Slippage", msg->titleLength);

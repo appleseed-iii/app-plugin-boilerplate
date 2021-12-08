@@ -10,6 +10,11 @@
 
     ```bash
     git clone --recurse-submodules git@github.com:LedgerHQ/app-ethereum.git
+    cd app-ethereum
+    git checkout master
+    # sync the submodule with the commit on the master branch
+    git submodule deinit -f .
+    git submodule update --init --recursive 
     ```
 
 3. clone ledger plugin-tools
@@ -80,6 +85,8 @@ git submodule update --remote --merge # this merges from YOUR remote
 git submodule deinit -f .
 git submodule update --init --recursive
 ```
+
+# do we need to be cl
 
 ## Formatting
 

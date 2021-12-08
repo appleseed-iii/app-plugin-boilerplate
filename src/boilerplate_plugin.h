@@ -25,8 +25,7 @@ typedef enum {
 // Enumeration used to parse the smart contract data.
 // EDIT THIS: Adapt the parameter names here.
 typedef enum {
-    AMOUNT_TO_DEPOSIT = 0,
-    AMOUNT_TO_WITHDRAW = 0,
+    AMOUNT = 0,
     RECIPIENT,
     SLIPPAGE,
     // TOKEN_RECEIVED,
@@ -44,8 +43,7 @@ extern const uint8_t *const OLYMPUS_SELECTORS[NUM_SELECTORS];
 // will need to adapt this struct to your plugin.
 typedef struct context_t {
     // For display.
-    uint8_t amount_to_deposit[INT256_LENGTH];
-    uint8_t amount_to_withdraw[INT256_LENGTH];
+    uint8_t amount[INT256_LENGTH];
     uint8_t recipient[ADDRESS_LENGTH];
     uint8_t slippage[INT256_LENGTH];
     uint8_t contract_address[ADDRESS_LENGTH];

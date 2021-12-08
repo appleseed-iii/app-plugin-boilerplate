@@ -44,10 +44,10 @@ void handle_init_contract(void *parameters) {
     // to parse.
     switch (context->selectorIndex) {
         case STAKE_OHM:
-            context->next_param = AMOUNT_TO_DEPOSIT;
+            context->next_param = AMOUNT;
             break;
         case UNSTAKE_SOHM:
-            context->next_param = AMOUNT_TO_WITHDRAW;
+            context->next_param = AMOUNT;
         // Keep this
         default:
             PRINTF("Missing selectorIndex: %d\n", context->selectorIndex);

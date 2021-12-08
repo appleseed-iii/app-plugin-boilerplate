@@ -1,34 +1,39 @@
 #include "boilerplate_plugin.h"
 
-// Copies the whole parameter (32 bytes long) from `src` to `dst`.
-// Useful for numbers, data...
 static void copy_parameter(uint8_t *dst, size_t dst_len, uint8_t *src) {
-    // Take the minimum between dst_len and parameter_length to make sure we don't overwrite memory.
     size_t len = MIN(dst_len, PARAMETER_LENGTH);
     memcpy(dst, src, len);
 }
+// Copies the whole parameter (32 bytes long) from `src` to `dst`.
+// Useful for numbers, data...
+// static void copy_parameter(uint8_t *dst, size_t dst_len, uint8_t *src) {
+//     // Take the minimum between dst_len and parameter_length to make sure we don't overwrite memory.
+//     size_t len = MIN(dst_len, PARAMETER_LENGTH);
+//     memcpy(dst, src, len);
+// }
 
-// Copies a 20 byte address (located in a 32 bytes parameter) `from `src` to `dst`.
-// Useful for token addresses, user addresses...
-static void copy_address(uint8_t *dst, size_t dst_len, uint8_t *src) {
-    // An address is 20 bytes long: so we need to make sure we skip the first 12 bytes!
-    size_t offset = PARAMETER_LENGTH - ADDRESS_LENGTH;
-    size_t len = MIN(dst_len, ADDRESS_LENGTH);
-    memcpy(dst, &src[offset], len);
-}
+// // Copies a 20 byte address (located in a 32 bytes parameter) `from `src` to `dst`.
+// // Useful for token addresses, user addresses...
+// static void copy_address(uint8_t *dst, size_t dst_len, uint8_t *src) {
+//     // An address is 20 bytes long: so we need to make sure we skip the first 12 bytes!
+//     size_t offset = PARAMETER_LENGTH - ADDRESS_LENGTH;
+//     size_t len = MIN(dst_len, ADDRESS_LENGTH);
+//     memcpy(dst, &src[offset], len);
+// }
 
 // EDIT THIS: Remove this function and write your own handlers!
 static void handle_stake_ohm(ethPluginProvideParameter_t *msg, context_t *context) {
-    if (context->go_to_offset) {
-        if (msg->parameterOffset != context->offset + SELECTOR_SIZE) {
-            return;
-        }
-        context->go_to_offset = false;
-    }
+    // if (context->go_to_offset) {
+    //     if (msg->parameterOffset != context->offset + SELECTOR_SIZE) {
+    //         return;
+    //     }
+    //     context->go_to_offset = false;
+    // }
     switch (context->next_param) {
-        case AMOUNT_TO_DEPOSIT:  // _amount
-            copy_parameter(context->amount_to_deposit,
-                           sizeof(context->amount_to_deposit),
+        case AMOUNT:  // _amount
+            PRINTF("amount: %d\n", context->next_param, context->amount);
+            copy_parameter(context->amount,
+                           sizeof(context->amount),
                            msg->parameter);
         //     context->next_param = PATH_OFFSET;
         //     break;
@@ -48,7 +53,7 @@ static void handle_stake_ohm(ethPluginProvideParameter_t *msg, context_t *contex
         //     break;
         // case TOKEN_RECEIVED:  // path[1] -> contract address of token received
         //     copy_address(context->token_received, sizeof(context->token_received), msg->parameter);
-            context->next_param = UNEXPECTED_PARAMETER;
+            // context->next_param = UNEXPECTED_PARAMETER;
             break;
         // Keep this
         default:
@@ -60,8 +65,8 @@ static void handle_stake_ohm(ethPluginProvideParameter_t *msg, context_t *contex
 
 static void handle_unstake_sohm(ethPluginProvideParameter_t *msg, context_t *context) {
     switch (context->next_param) {
-        case AMOUNT_TO_WITHDRAW:
-            copy_parameter(context->amount_to_withdraw, sizeof(context->amount_to_withdraw), msg->parameter);
+        case AMOUNT:
+            copy_parameter(context->amount, sizeof(context->amount), msg->parameter);
             break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
@@ -89,7 +94,7 @@ void handle_provide_parameter(void *parameters) {
             handle_stake_ohm(msg, context);
             break;
         case UNSTAKE_SOHM:
-            handle_stake_ohm(msg, context);
+            handle_unstake_sohm(msg, context);
             break;
         default:
             PRINTF("Selector Index not supported: %d\n", context->selectorIndex);
