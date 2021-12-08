@@ -71,6 +71,12 @@
             - then run speculos alias (step 2 below)
     2. in `app-plugin-boilerplate/tests`, run `yarn test`
 
+10. in the future to update submodules
+
+```bash
+git submodule update --remote --merge
+```
+
 ## Formatting
 
 The C source code is expected to be formatted with `clang-format` 11.0.0 or higher.
